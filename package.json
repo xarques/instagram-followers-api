@@ -1,0 +1,10 @@
+{
+  "name": "followers",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "jsdom": "^12.0.0",
+    "node-fetch": "^2.2.0"
+  }
+}
