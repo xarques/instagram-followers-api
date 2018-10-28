@@ -26,21 +26,20 @@ provider:
   region: eu-west-3
 
 # you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
-#            - "/*"
-
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action: # Gives permission to DynamoDB tables in a specific region
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:eu-west-3:043404835066:table/adrelanineFollowers"
+#    AccessDeniedException: User: arn:aws:sts::043404835066:assumed-role/followers-dev-eu-west-3-lambdaRole/followers-dev-collectFolllowers is not authorized to perform: dynamodb:PutItem on resource: arn:aws:dynamodb:eu-west-3:043404835066:table/followers
+#    arn:aws:dynamodb:eu-west-3:043404835066:table/followers
+#   Resource: "arn:aws:dynamodb:region:account-id:table/table-name"
 # you can define service wide environment variables here
 #  environment:
 #    variable1: value1
@@ -56,10 +55,21 @@ provider:
 
 functions:
   collectFolllowers:
-    handler: followers.collectFollowers
+    handler: followersHandler.collectFollowers
     events: # The Events that trigger this Function
-      - schedule: rate(2 minutes)
-
+#      - schedule: rate(5 minutes)
+      - schedule:
+          rate: cron(0 * * * ? *)
+    package:
+      include:
+        followers.js
+  getFollowers:
+    handler: followersHandler.getFollowers
+    events:
+      - http:
+          path: followers
+          method: get
+          cors: true
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
@@ -110,14 +120,14 @@ resources:
     usersTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: followers
+        TableName: adrelanineFollowers
         AttributeDefinitions:
-          - AttributeName: name
+          - AttributeName: checkedDate
             AttributeType: S
           - AttributeName: followers
             AttributeType: N
         KeySchema:
-          - AttributeName: name
+          - AttributeName: checkedDate
             KeyType: HASH
           - AttributeName: followers
             KeyType: RANGE
