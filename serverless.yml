@@ -36,7 +36,7 @@ provider:
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
-      Resource: "arn:aws:dynamodb:eu-west-3:043404835066:table/adrelanineFollowers"
+      Resource: "arn:aws:dynamodb:eu-west-3:043404835066:table/*"
 #    AccessDeniedException: User: arn:aws:sts::043404835066:assumed-role/followers-dev-eu-west-3-lambdaRole/followers-dev-collectFolllowers is not authorized to perform: dynamodb:PutItem on resource: arn:aws:dynamodb:eu-west-3:043404835066:table/followers
 #    arn:aws:dynamodb:eu-west-3:043404835066:table/followers
 #   Resource: "arn:aws:dynamodb:region:account-id:table/table-name"
@@ -54,12 +54,19 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  collectFolllowers:
+  collectFollowers:
     handler: followersHandler.collectFollowers
     events: # The Events that trigger this Function
 #      - schedule: rate(5 minutes)
       - schedule:
           rate: cron(0 * * * ? *)
+          input:
+            accountIds:
+              - adrelanine
+              - glgv__
+              - jikamanu
+              - homiesfromparis
+              - dvnentity
     package:
       include:
         followers.js
@@ -67,9 +74,13 @@ functions:
     handler: followersHandler.getFollowers
     events:
       - http:
-          path: followers
+          path: followers/{id}
           method: get
           cors: true
+          request:
+            parameters:
+              paths:
+                id: true
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
@@ -121,6 +132,74 @@ resources:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: adrelanineFollowers
+        AttributeDefinitions:
+          - AttributeName: checkedDate
+            AttributeType: S
+          - AttributeName: followers
+            AttributeType: N
+        KeySchema:
+          - AttributeName: checkedDate
+            KeyType: HASH
+          - AttributeName: followers
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    glgvTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: glgv__Followers
+        AttributeDefinitions:
+          - AttributeName: checkedDate
+            AttributeType: S
+          - AttributeName: followers
+            AttributeType: N
+        KeySchema:
+          - AttributeName: checkedDate
+            KeyType: HASH
+          - AttributeName: followers
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    jikamanuTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: jikamanuFollowers
+        AttributeDefinitions:
+          - AttributeName: checkedDate
+            AttributeType: S
+          - AttributeName: followers
+            AttributeType: N
+        KeySchema:
+          - AttributeName: checkedDate
+            KeyType: HASH
+          - AttributeName: followers
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    homiesfromparisTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: homiesfromparisFollowers
+        AttributeDefinitions:
+          - AttributeName: checkedDate
+            AttributeType: S
+          - AttributeName: followers
+            AttributeType: N
+        KeySchema:
+          - AttributeName: checkedDate
+            KeyType: HASH
+          - AttributeName: followers
+            KeyType: RANGE
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+    dvnentityTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: dvnentityFollowers
         AttributeDefinitions:
           - AttributeName: checkedDate
             AttributeType: S

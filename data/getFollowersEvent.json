@@ -1,0 +1,98 @@
+{ resource: '/followers/{id
+  }',
+path: '/followers/adrelanine',
+httpMethod: 'GET',
+headers: { Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,* /*;q=0.8',
+'Accept-Encoding': 'gzip, deflate, br',
+'Accept-Language': 'en-US,en;q=0.9,fr-FR;q=0.8,fr;q=0.7',
+'CloudFront-Forwarded-Proto': 'https',
+'CloudFront-Is-Desktop-Viewer': 'true',
+'CloudFront-Is-Mobile-Viewer': 'false',
+'CloudFront-Is-SmartTV-Viewer': 'false',
+'CloudFront-Is-Tablet-Viewer': 'false',
+'CloudFront-Viewer-Country': 'FR',
+Host: 'q7kgk5k5k3.execute-api.eu-west-3.amazonaws.com',
+'upgrade-insecure-requests': '1',
+'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+Via: '2.0 b1c35afa4664962eaa649b75d6f7ff08.cloudfront.net (CloudFront)',
+'X-Amz-Cf-Id': 'MzxhdIkQ5MmWeeu9TIh_2t1vhbUY11bx2lKOz8iLG11mlg10gDegLA==',
+'X-Amzn-Trace-Id': 'Root=1-5bd59d67-9c2d4e0d18b7416d465406ed',
+'X-Forwarded-For': '82.253.76.84, 52.46.15.89',
+'X-Forwarded-Port': '443',
+'X-Forwarded-Proto': 'https' },
+multiValueHeaders:
+{ Accept:
+[ 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8'
+  ],
+'Accept-Encoding': [ 'gzip, deflate, br'
+  ],
+'Accept-Language': [ 'en-US,en;q=0.9,fr-FR;q=0.8,fr;q=0.7'
+  ],
+'CloudFront-Forwarded-Proto': [ 'https'
+  ],
+'CloudFront-Is-Desktop-Viewer': [ 'true'
+  ],
+'CloudFront-Is-Mobile-Viewer': [ 'false'
+  ],
+'CloudFront-Is-SmartTV-Viewer': [ 'false'
+  ],
+'CloudFront-Is-Tablet-Viewer': [ 'false'
+  ],
+'CloudFront-Viewer-Country': [ 'FR'
+  ],
+Host: [ 'q7kgk5k5k3.execute-api.eu-west-3.amazonaws.com'
+  ],
+'upgrade-insecure-requests': [ '1'
+  ],
+'User-Agent': [ 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
+  ],
+Via: [ '2.0 b1c35afa4664962eaa649b75d6f7ff08.cloudfront.net (CloudFront)'
+  ],
+'X-Amz-Cf-Id': [ 'MzxhdIkQ5MmWeeu9TIh_2t1vhbUY11bx2lKOz8iLG11mlg10gDegLA=='
+  ],
+'X-Amzn-Trace-Id': [ 'Root=1-5bd59d67-9c2d4e0d18b7416d465406ed'
+  ],
+'X-Forwarded-For': [ '82.253.76.84,
+    52.46.15.89'
+  ],
+'X-Forwarded-Port': [ '443'
+  ],
+'X-Forwarded-Proto': [ 'https'
+  ]
+},
+queryStringParameters: null,
+multiValueQueryStringParameters: null,
+pathParameters: { id: 'adrelanine'
+},
+stageVariables: null,
+requestContext: { resourceId: 'ngebr9',
+resourcePath: '/followers/{id
+  }',
+httpMethod: 'GET',
+extendedRequestId: 'PeWIKGtIiGYFrrA=',
+requestTime: '28/Oct/2018: 11: 28: 39 +0000',
+path: '/dev/followers/adrelanine',
+accountId: '043404835066',
+protocol: 'HTTP/1.1',
+stage: 'dev',
+domainPrefix: 'q7kgk5k5k3',
+requestTimeEpoch: 1540726119432,
+requestId: '9df4392b-daa4-11e8-b70b-676399e5282a',
+identity: { cognitoIdentityPoolId: null,
+accountId: null,
+cognitoIdentityId: null,
+caller: null,
+sourceIp: '82.253.76.84',
+accessKey: null,
+cognitoAuthenticationType: null,
+cognitoAuthenticationProvider: null,
+userArn: null,
+userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+user: null
+  },
+domainName: 'q7kgk5k5k3.execute-api.eu-west-3.amazonaws.com',
+apiId: 'q7kgk5k5k3'
+},
+body: null,
+isBase64Encoded: false
+}

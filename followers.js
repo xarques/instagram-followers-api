@@ -6,12 +6,9 @@ module.exports.retrieveFollowers = (name) => {
   return  fetch(`https://instagram.com/${name}`)
   .then(res => res.text())
   .then(body => {
-    const dom = new JSDOM(body);
-    const document = dom.window.document;
-    //const description = document.querySelector('meta[property~="og:description"]').getAttribute("content");
-    const description = document.querySelector('meta[name="description"]').getAttribute("content");
-    //const followers = parseInt(description.split(' ')[0].replace(/,/g, ''));
-    const followers = description.split(' ')[0].replace(/,/g, '');
+    const dom = new JSDOM(body, { runScripts: "dangerously" });
+    const user = dom.window._sharedData.entry_data.ProfilePage[0].graphql.user;
+    const followers = user.edge_followed_by.count
     return followers;
   });
 }
